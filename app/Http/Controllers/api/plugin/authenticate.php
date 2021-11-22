@@ -11,27 +11,29 @@ class authenticate extends Controller
 {
     public function index(Request $request): JsonResponse
     {
-        $who = $request->who;
+        $workspace = $request->input('workspace');
 
-        if (is_null($who)) {
+        if (is_null($workspace)) {
             return Response::json([
                 'error'=>'error'
             ], 403);
         }
 
-        if ($who == 'rsp') {
+        if ($workspace == 'refactory') {
             return Response::json([
               "plugin" => [
-                  "dashboard",
-                  "project",
-                  "hiring"
+                  "calendar",
+                  "workboard",
               ]
             ]);
         } else {
             return Response::json([
                 "plugin" => [
                     "calendar",
-                    "workboard"
+                    "workboard",
+                    "dashboard",
+                    "project",
+                    "hiring"
                 ]
             ]);
         }

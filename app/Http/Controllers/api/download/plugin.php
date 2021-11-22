@@ -11,7 +11,7 @@ class plugin extends Controller
 {
     public function index(Request $request)
     {
-        $applet = $request->applet;
+        $applet = $request->input('applet');
 
         if (is_null($applet)) {
             return Response::json([
